@@ -23,14 +23,13 @@ type deckWriter struct{}
 
 func (d deckReader) Read(p []byte) (n int, err error) {
 	data, err := os.ReadFile("meuDeck")
-
 	if err != nil {
 		return 0, err
 	}
 
 	n = copy(p, data)
 
-	return n, nil
+	return n, io.EOF
 }
 
 func (d deckWriter) Write(p []byte) (n int, err error) {
